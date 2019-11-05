@@ -1,13 +1,70 @@
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+.searchform {
+    padding: 10px;
+}  
+
+
+.navBar {
+    background-color: #0065a4;
+    width: 100%;
+    color: white;
+    font-family: Helvetica,Arial,Sans-Serif;
+    border: solid, black, 1px;
+    padding: 10px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.navBar a:Link {
+    color: white;
+    text-decoration: none;
+}
+
+.navBar a:Visited {
+    color: white;
+}
+.navBar a:Visited {
+    color: white;
+}
+
+#submitSearch {
+  
+}
+.searchForm {
+  display: inline;
+}
+
+.searchImg {
+  
+  display: inline;
+  margin-right: 20px;
+}
+.formContainer {
+  
+  height: 90px;
+  border-bottom: solid gray 1px
+  
+}
+.searchSelect {
+  margin-right: 20px
+}
+.searchInput {
+  margin-right: 20px;
+
+}
+
+.searchLegend {
+  display: inline;
+  font-size: small;
 }
