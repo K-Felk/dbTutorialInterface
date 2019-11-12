@@ -2,7 +2,7 @@ import React from 'react';
 
 
 function Itemdisplay(props) {
-        console.log(props)
+        //console.log(props)
         return(
            <div className="card">
                 <div className="card-body">

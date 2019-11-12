@@ -1,18 +1,23 @@
 import React from 'react';
-import {BrowserRouter as Router,
-    Switch,
-    Link
-  } from "react-router-dom";
+import {BrowserRouter as Router, Link } from "react-router-dom";
+  
 
-function NavBar(props) {
-    return(
-        <div className="navBar">
-        <Router>
-            <Link to='/' onClick={props.onStartOver}>Start Over</Link>
-        </Router>
-        </div>
+  class NavBar extends React.Component {
 
-    )
+
+
+    render(props) {
+            
+            return(
+            <div className="navBar">
+            <Router>
+                <Link to="/search" onClick={this.props.handleClick}>Start Over</Link>
+            </Router>
+            </div>
+
+        )
+    }
+    
 
 }
 

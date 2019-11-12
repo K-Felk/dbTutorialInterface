@@ -25,18 +25,28 @@ class Searchresults extends React.Component {
       }
 
       render() {
-        let numStatement;
+        var numStatement;
+        var searchStatement;
         const results = this.props.results;
         if (this.props.numfound === "") {
+          
           numStatement = "";
 
         } else {
+          
           numStatement = "found " + this.props.numfound + " results";
+        }
+
+        if (this.props.searchString === "") {
+          searchStatement = "";
+        } else {
+          searchStatement = "Searched for: " + this.props.searchString;
         }
 
           return(
             <div className="Row">
               <div className="Col">
+                <p>{searchStatement}</p>
                 <p>{numStatement}</p>
 
                 
