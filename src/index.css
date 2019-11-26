@@ -38,9 +38,7 @@ body {
     color: white;
 }
 
-#submitSearch {
-  
-}
+
 .searchForm {
   display: inline;
 }
@@ -67,4 +65,85 @@ body {
 .searchLegend {
   display: inline;
   font-size: small;
+}
+.sidebar h2 {
+  font-size: 18pt
+}
+.limiter {
+  margin-right: 5pt;
+}
+
+.card-title{
+  font-size: 14pt;
+  font-weight: bold;
+}
+.details {
+  color: grey;
+  margin-bottom: 5pt;
+}
+
+.pubtype-icon {
+  display: block;
+  width: 60px;
+  height: 70px;
+  margin: 0 auto;
+  background: url(PT_Sprite.png) no-repeat -545px -121px;
+}
+
+.record-icon {
+  position: relative;
+  float: left;
+  width: 80px;
+  margin-left: 0px;
+  text-align: center;
+}
+
+.pt-ebook {
+  height: 56px;
+  background-position: -350px -515px;
+}
+
+.pt-book {
+  background-position: -139px -121px;
+  height: 59px;
+}
+
+.pt-videoRecording {
+  background-position: -347px -31px;
+  height: 63px;
+}
+
+.pt-academicJournal {
+  background-position: -347px -121px;
+  height: 57px;
+}
+
+.pt-map {
+  background-position: -36px -121px;
+  height: 45px;
+}
+.pt-audio {
+  background-position: -543px -31px;
+  height: 49px;
+}
+.prev {
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  margin-top: 6pt;
+  float: left;
+  margin-bottom: 10pt;
+}
+
+.next {
+  border: none;
+  color: blue;
+  margin-top: 6pt;
+  text-decoration: underline;
+  float: right;
+  margin-bottom: 10pt;
+}
+
+.PlaceHolder {
+  margin-left: 10pt;
 }

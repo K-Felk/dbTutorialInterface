@@ -11,30 +11,22 @@ class SearchForm extends React.Component{
     render(props) {
         //setting a defaultValue on an uncontrolled select element does not seem to work, so I am using conditional rendering to preserve the users
         //search parameters.
-        var options = "";
-        const  val= this.props.field;
-        switch (val) {
-            case "Creator":
-                options = <select className="searchSelect" name="field"><option value="Keyword">Keyword</option><option value="Creator" selected>Author</option><option value="Title">Title</option></select>
-                break;
-            case "Title":
-                options = <select className="searchSelect" name="field"><option value="Keyword">Keyword</option><option value="Creator">Author</option><option selected value="Title">Title</option></select>
-                break;
-            default:
-                options = <select className="searchSelect" name="field"><option value="Keyword" selected>Keyword</option><option value="Creator">Author</option><option value="Title">Title</option></select>
-        }      
-    
+        
 
         return(
-            <div className="Row">
+            
                 <div className="col searchform">
-                    <form>
+                    <form onSubmit={this.props.onSubmit}>
                         <div className="formContainer">
                         <img className="searchImg" src={logo} alt="GVSU Logo" />
                        <fieldset className="searchForm">
                         <legend className="searchLegend">Grand Valley State University:  Search Library Resources</legend>
-                            {options} 
-                                <input className="searchInput" type="text" defaultValue={this.props.searchString} name="query"/>
+                        <select className="searchSelect" name="field" value={this.props.field} onChange={this.props.onChange}>
+                            <option value="Keyword">Keyword</option>
+                            <option value="Creator">Author</option>
+                            <option value="Title">Title</option>
+                        </select>
+                                <input className="searchInput" type="text" value={this.props.query} onChange={this.props.onChange} name="query"/>
                         
                     <input name="submitSearch" className="btn btn-primary btn-sm" type="submit" value="Search" />
 
@@ -45,10 +37,9 @@ class SearchForm extends React.Component{
 
 
                 </div>
-            </div>
+            
 
         )
     }
 }
-
 export default SearchForm;
