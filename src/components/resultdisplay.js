@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 
 function Itemdisplay(props) {
         //console.log(props)
 
         var description = "";
-        const link = "item/props.id";
+        const link = "/item/" + props.id;
 
         var details = "";
 
@@ -48,6 +49,14 @@ function Itemdisplay(props) {
             break;
         }
 
+        var resourceLink = "";
+
+        if (props.format === "ebook") {
+            resourceLink = <p><Link className="onlineLink" to="/placeholder">Online Access</Link></p>
+        }  else if (props.format === "book" || props.format === "map") {
+        resourceLink = <Link className="available" to="/available">Available {props.callnumber} Mary Idema Pew - 3rd Floor</Link>
+        }
+
 
         return(
            <div className="card">
@@ -56,6 +65,7 @@ function Itemdisplay(props) {
         <div className="record-icon">{icon}<p className="caption">{props.format}</p></div>
         <div className="details">{details}</div>
             <p className="card-text">{description}</p>
+        {resourceLink}
             </div>
             </div>
 

@@ -70,9 +70,12 @@ class Searchresults extends React.Component {
                 
                 {results.length > 0 ? results.map(result => this.renderItem(result)) : ""}
 
+                <div className="nextprev">
+
                 {this.props.start > 0? <button className="prev" type="button" onClick={this.props.back} >Previous</button> : ""}
                 {total > 10 && this.props.start +10 < total? <button type="button" className="next" onClick={this.props.advance} >Next</button> : ""}
-              </div>
+                </div> 
+             </div>
             
           );
       }

@@ -5,6 +5,7 @@ import SearchForm from "./searchform"
 import NavBar from './navBar'
 import SideBar from './sidebar'
 import qs from 'query-string';
+import Footer from "./footer.js"
 
 
 class Main extends React.Component{
@@ -460,6 +461,9 @@ class Main extends React.Component{
                                                 numfound={this.state.numfound} 
                                                 results={this.state.results} 
                                                 searchString={this.state.query}/>
+                                </div>
+                                <div className="row">
+                                     <Footer/>   
                                 </div>
                         </div>
                 )

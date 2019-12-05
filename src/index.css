@@ -131,7 +131,7 @@ body {
   color: blue;
   text-decoration: underline;
   margin-top: 6pt;
-  float: left;
+  
   margin-bottom: 10pt;
 }
 
@@ -140,10 +140,62 @@ body {
   color: blue;
   margin-top: 6pt;
   text-decoration: underline;
-  float: right;
+  
   margin-bottom: 10pt;
+}
+
+.nextprev {
+  float: left;
 }
 
 .PlaceHolder {
   margin-left: 10pt;
 }
+
+.onlineLink {
+  clear: all;
+}
+.footer{
+  text-align: center;
+  margin-bottom: 6pt;
+}
+.available {
+  
+  font-size: 13pt;
+}
+
+dt {
+    display: block;
+    float: left;
+    width: 140px;
+    padding: 5px 0;
+    font-weight: bold;
+    text-align: left;
+    clear: left;
+    word-wrap: break-word;
+}
+dd{
+    display: block;
+    margin: 0 0 0 140px;
+    padding: 5px 0 5px 10px
+}
+
+.itemTitle {
+  font-size: 18pt;
+  margin-bottom: 20px;
+}
+.sideBarHeader {
+  font-weight: bold;
+}
+
+.backLink{
+  display: block;
+  margin-top: 20px;
+
+  margin-bottom: 20px;
+
+}
+.sidebar {
+  border-right: 1px solid grey;
+}
+
