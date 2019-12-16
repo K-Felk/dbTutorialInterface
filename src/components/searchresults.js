@@ -23,6 +23,8 @@ class Searchresults extends React.Component {
           standardnumber = {props.StandardNumber}
           key = {props.ID}
           id = {props.ID}
+          location = {props.Location}
+          subjects
           
           />
         
@@ -54,18 +56,15 @@ class Searchresults extends React.Component {
 
         
 
-        if (this.props.searchString === "") {
-          searchStatement = "";
-        } else {
-          searchStatement = "Searched for: " + this.props.searchString;
-        }
+        
 
           return(
             
               <div className="col-sm-9">
                 <Alert isVisible={this.props.isVisible} alertMsg={this.props.alertMsg}/>
-                <p>{searchStatement}</p>
+                <p>{this.props.searchStatement}</p>
                 <p>{numStatement}</p>
+                
 
                 
                 {results.length > 0 ? results.map(result => this.renderItem(result)) : ""}

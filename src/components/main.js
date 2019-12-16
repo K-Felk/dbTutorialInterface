@@ -27,7 +27,8 @@ class Main extends React.Component{
                         startDate: "",
                         endDate: "",
                         alertmsg: "",
-                        alertIsVisible: false
+                        alertIsVisible: false,
+                        subject: "",
                         
                 };
                 
@@ -37,13 +38,21 @@ class Main extends React.Component{
                 this.handleSubmit = this.handleSubmit.bind(this);
                 this.advance = this.advance.bind(this);
                 this.back = this.back.bind(this);
+                this.subjectSearch = this.subjectSearch.bind(this);
         }
 
 
+        //user triggered a subject Search by clicking a subject link
+        subjectSearch(event) {
+                
+                this.setState({start: 0});
+                this.setState({subject: event.target.value}, this.push);
+
+        }
         //clear state-this is neccessary to sync when the URL indicates the search has been cleared, and 
         //also when someone hits the "start over" link
         clearState() {
-                console.log("reset");
+                
                 this.setState({start: 0});
                 this.setState({numfound: ""});
                 this.setState({results: []});
@@ -55,6 +64,8 @@ class Main extends React.Component{
                 this.setState({scholarly: new Map()});  
                 this.setState({start: 0});  
                 this.setState({query: ""});
+                this.setState({subject: ""});
+                
         }
         //if we have more than ten results, page to the next ten
         advance(event) {
@@ -109,24 +120,46 @@ class Main extends React.Component{
                 if (this.state.endDate !== "") {
                         queryString += "enddate=" + this.state.endDate + "&";
                 }
+                
+                console.log(this.state.subject);
+                
+                if (this.state.subject !== "") {
+                        queryString += "subject=" + this.state.subject + "&";
+
+                }
 
                 
                 queryString += "start=" + this.state.start;
                 console.log(queryString);
-                //push the new URL into the nav bar
-                //clear any evsting alert messages
-
                 return queryString;
 
         }
-        
+        //construct a URL form current state, push to history, then
+        //force a page reload so that the app will read the new URL,
+        //update state, and execute the back-end solr query
+        //see componentdidmount.
+        //had to put this part in it's own function, 
+        //so I can sequence page reloads after 
+        //certain setState statements as a callback function.
+        push() {
+                var query = "/search" + this.constructURL();
+                        
+                     
+                this.props.history.push(query); 
 
+
+                window.location.reload(false);
+                
+        }
+
+        //handle form submissions and forawrd/backward link clicks
         handleSubmit(event) {
-                //we trigger this in a few different places, so check to see if it was triggered by form submission
-                //so we can stop the form's default behavior, which is to reload page
+                //if this functon is triggered by form submission, we need to prevent the default form behavior, which is to
+                //reload the page
                 if (event !== undefined) { 
                         event.preventDefault();
-                }               
+                }
+                     
                 //if there are both start and end dates, check to make sure enddate is not before startdate
                 if (this.state.startDate !== "" && this.state.endDate !== "") {
                         if (parseInt(this.state.endDate, 10) < parseInt(this.state.startDate, 10)) {
@@ -138,22 +171,22 @@ class Main extends React.Component{
                                 return;
                         }
                 }
-                //if the data checks out, clear any alert messages and set the flag to reload the page
                 
 
-                
-                var query = "/search" + this.constructURL();
-                        
-                       
-                this.props.history.push(query); 
-
-
-                window.location.reload(false);
-                
-                             
+                // If the submit button is triggering this 
+                //we also need to reset the position marker, so we start the result display at item one.
+                if (event !== undefined) { 
+                        this.setState({subject: ""});
+                        this.setState({start: 0}, this.push);
+                }   else {
+                        this.push();
+                }          
 
         }
 
+
+        //updates global state from the search form options.  Note that the url, not the global state, is the final determiner 
+        //of state.  This is purposeful, so that we preserve back button functionality and the ability to bookmark searches.
         handleChange(event) {
                 
                 //if it's the scholarly checkbox, update that mapping
@@ -202,7 +235,7 @@ class Main extends React.Component{
                 
 
         }
-        //get search results from the solr backend, set state variables with retrieved data
+        //get search results from the solr backend, set state variables for results to force a re-render and show results
         getResults (query) {
                 
                 
@@ -228,13 +261,14 @@ class Main extends React.Component{
                 //and build the query string for solr
                 if (this.props.location.search !== "") {
                         
+                        //parse the query string from the URL so we can access values
                         const parsed = qs.parse(this.props.location.search);
 
-                        //set the current state from the URL.  This makes the url the definitive source of state, and also ensures that if someone 
+                        //set the current state from the URL.  This makes the url the definitive source of state, and ensures that if someone 
                         //tries to link directly to a search, they can.  Also start building the query string for the solr search
                         var solrQuery = "";
                         if (parsed.field === "Keyword") {
-                                solrQuery = "";
+                                solrQuery = "Text:";
                         } else {
                                 solrQuery = parsed.field + ":"
                         }
@@ -244,6 +278,13 @@ class Main extends React.Component{
 
                         this.setState({field: parsed.field});
                         this.setState({query: parsed.query});
+
+
+                        if (parsed.subject !== undefined) {
+                                this.setState({subject: parsed.subject});
+                                solrQuery += " AND Subject:\"" + parsed.subject + "\"";
+
+                        }
 
                         if (parsed.startdate !== undefined) {
                                 
@@ -416,7 +457,7 @@ class Main extends React.Component{
 
                         
                 } else {
-                        //if the query string is empty, then reset state
+                        //if the query string is empty, then reset state to be clear
                         this.clearState();
                         
 
@@ -427,8 +468,16 @@ class Main extends React.Component{
 
         render (props) {
                 
+                var searchStatement = "";
 
-                
+                if (this.state.results.length > 0 ) {
+
+                        searchStatement += "Searched for " + this.state.query + " in " + this.state.field;
+
+                        if (this.state.subject !== "") {
+                                searchStatement += " and " + this.state.subject + " in subject";
+                        }
+                }
                 return(
                         <div className="container">
                                <div className="row">
@@ -445,12 +494,13 @@ class Main extends React.Component{
 
                                 <div className="row">
                                         <SideBar 
-                                                
+                                                results={this.state.results}
                                                 scholarly={this.state.scholarly} 
                                                 format={this.state.format} 
                                                 startDate={this.state.startDate} 
                                                 endDate={this.state.endDate}
                                                 onChange={this.handleChange}
+                                                subjectSearch={this.subjectSearch}
                                         />
                                 <Searchresults 
                                                 start={this.state.start}
@@ -458,7 +508,8 @@ class Main extends React.Component{
                                                 advance={this.advance}
                                                 alertMsg={this.state.alertmsg}
                                                 isVisible={this.state.alertIsVisible}
-                                                numfound={this.state.numfound} 
+                                                numfound={this.state.numfound}
+                                                searchStatement={searchStatement}
                                                 results={this.state.results} 
                                                 searchString={this.state.query}/>
                                 </div>

@@ -31,7 +31,8 @@ class ItemDisplay extends React.Component{
                 format: "",
                 publication: "",
                 callnumber: "",
-                standardnumber:"",      
+                standardnumber:"",
+                subject: [],      
         }
         this.onChange = this.onChange.bind(this);
         this.submit = this.submit.bind(this);
@@ -72,7 +73,24 @@ class ItemDisplay extends React.Component{
 
         axios.get(URL)
                   .then(res => {
-                      const item = res.data.response.docs[0];
+                      
+                    const item = res.data.response.docs[0];
+                    //for reasons I can't fathom, I have to put the subject parsing code here, or it simply fails silently.
+
+                    //remove extra quotes, which will screw up our search
+                    var tempString = item.Subject.replace(/"/g,"");
+                    
+                    //we can have one subject or many, determine which and split into an array if many
+                    if (tempString.includes(";")) {
+                        
+                        var temp = tempString.split(";");
+                        this.setState({subject: temp});
+                    } else {
+                        
+                        this.setState({subject: [tempString]});
+
+                    }
+
                     
                     this.setState({ id: String(item.ID) });
                     this.setState({ scholarly:  item.Scholarly});
@@ -84,23 +102,13 @@ class ItemDisplay extends React.Component{
                     this.setState({publication: item.Publication});
                     if (item.Callnumber !== undefined) {this.setState({callnumber: item.Callnumber});
                     this.setState({standardnumber: item.StandardNumber});
+
                 }
-                    
-  
-                    
+                           
                   })
-
-                  
-
-                  
-
-
 
     }
     render(){
-
-        
-
 
         return(
             <div className="container">
@@ -132,21 +140,15 @@ class ItemDisplay extends React.Component{
                     title={this.state.title}
                     format={this.state.format}
                     standardnumber={this.state.standardnumber}
+                    subjects = {this.state.subject}
                     />
 
                 
 
                 </div>
                 <div className="row">
-
-
                     <Footer/>
                 </div>
-
-
-
-
-
 
             </div>
 

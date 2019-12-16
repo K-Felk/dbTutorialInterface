@@ -54,7 +54,7 @@ function Itemdisplay(props) {
         if (props.format === "ebook") {
             resourceLink = <p><Link className="onlineLink" to="/placeholder">Online Access</Link></p>
         }  else if (props.format === "book" || props.format === "map") {
-        resourceLink = <Link className="available" to="/available">Available {props.callnumber} Mary Idema Pew - 3rd Floor</Link>
+        resourceLink = <Link className="available" to="/available">Available {props.callnumber} {props.location}</Link>
         }
 
 

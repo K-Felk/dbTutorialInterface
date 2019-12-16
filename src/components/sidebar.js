@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
 
 
   class SideBar extends React.Component {
@@ -7,6 +8,59 @@ import PropTypes from 'prop-types';
 
 
     render(props) {
+
+
+        //set up for subject search 
+        var subjectList = "";
+
+        //first loop through and extract all subject headings
+        if (this.props.results.length > 0) {
+          var results = this.props.results
+          var subjects = [];
+
+          //cycle through results, extract all subject headings, put them all in an array
+          results.forEach(function (result, index) {
+            var tempString = result.Subject.replace(/"/g,"");
+                    
+            //we can have one subject or many, determine which and proceed accordingly
+            if (tempString.includes(";")) {
+                        
+              var temp = tempString.split(";");
+              subjects = subjects.concat(temp)
+            } else {
+                        
+              subjects.push(tempString)
+
+            }
+          });
+          //now loop through all subjects, removing duplicates
+          var uniqueSubjects = [];
+          subjects.forEach(function(subject, index) {
+            if (uniqueSubjects.includes(subject) === false) {
+              uniqueSubjects.push(subject);
+
+            }
+
+
+          })
+
+          
+          if (uniqueSubjects.length > 0) {
+            subjectList = uniqueSubjects.map((subject, index) => 
+            <li key={index}><button className="subjects" onClick={this.props.subjectSearch} type="button" value={subject}>{subject}</button></li>
+        
+            
+            
+          );
+            
+        }
+
+
+        }
+
+        
+
+
         //set up for the large number of checkboxes
 
         const scholarly = [
@@ -108,6 +162,10 @@ import PropTypes from 'prop-types';
                         ))
                         }
                     </React.Fragment>
+
+                    <label className="subjectLabel">Subjects:</label>
+
+                    <ul className="subjectList">{subjectList}</ul>
 
                     
 

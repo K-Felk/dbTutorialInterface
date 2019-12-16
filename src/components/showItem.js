@@ -5,7 +5,27 @@ import { Link } from "react-router-dom";
 
 class ShowItem extends React.Component{
 
+    
+
     render() {
+        
+        
+        var subjectList = "";
+        if (this.props.subjects.length > 0) {
+            subjectList = this.props.subjects.map((subject, index) => 
+        <li key={index}><Link to={"/search?field=Keyword&query=*&start=0&subject=" + subject  }>{subject}</Link></li>
+        
+            
+            
+            );
+            
+        }   
+
+        
+
+       
+        
+        
         return(
             <div className="col-sm-9" role="main" aria-label="Detailed Record">
                 <Alert isVisible={this.props.isVisible} alertMsg={this.props.alertMsg}/>
@@ -14,9 +34,9 @@ class ShowItem extends React.Component{
                 <h1 className="itemTitle">{this.props.title}</h1>
 
                 <dl>
-                    <dt>Author/Creator</dt>
+                    <dt>Author</dt>
                     <dd>{this.props.creator}</dd>
-                    <dt>Publication Information</dt>
+                    <dt>Publication Info.</dt>
                     <dd>{this.props.publication}}</dd>
                     <dt>Publication Date</dt>
                     <dd>{this.props.date}</dd>
@@ -24,6 +44,7 @@ class ShowItem extends React.Component{
                     <dd>{this.props.description}</dd>
                     <dt>Publication Type</dt>
                     <dd>{this.props.format}</dd>
+                    <dt>Subjects</dt><dd><ul>{subjectList}</ul></dd>
                 </dl>
 
 

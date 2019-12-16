@@ -135,6 +135,21 @@ body {
   margin-bottom: 10pt;
 }
 
+.subjects {
+  border: none;
+  color: blue;
+  margin-top: 5pt;
+  text-decoration: underline;
+
+}
+
+.subjectList{
+  list-style-type:none;
+  margin: 0;
+  padding: 0;
+
+}
+
 .next {
   border: none;
   color: blue;
@@ -167,7 +182,7 @@ body {
 dt {
     display: block;
     float: left;
-    width: 140px;
+    width: 160px;
     padding: 5px 0;
     font-weight: bold;
     text-align: left;
@@ -176,7 +191,7 @@ dt {
 }
 dd{
     display: block;
-    margin: 0 0 0 140px;
+    margin: 0 0 0 160px;
     padding: 5px 0 5px 10px
 }
 
