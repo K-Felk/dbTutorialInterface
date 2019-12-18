@@ -12,25 +12,27 @@ import {Link} from "react-router-dom";
 
         //set up for subject search 
         var subjectList = "";
-
+        
         //first loop through and extract all subject headings
-        if (this.props.results.length > 0) {
+        if (this.props.results.length > 0) { 
           var results = this.props.results
           var subjects = [];
 
           //cycle through results, extract all subject headings, put them all in an array
           results.forEach(function (result, index) {
-            var tempString = result.Subject.replace(/"/g,"");
+            if (result.Subject !== undefined) {
+              var tempString = result.Subject.replace(/"/g,"");
                     
-            //we can have one subject or many, determine which and proceed accordingly
-            if (tempString.includes(";")) {
+              //we can have one subject or many, determine which and proceed accordingly
+              if (tempString.includes(";")) {
                         
-              var temp = tempString.split(";");
-              subjects = subjects.concat(temp)
-            } else {
+                var temp = tempString.split(";");
+                subjects = subjects.concat(temp)
+            }  else {
                         
-              subjects.push(tempString)
+                subjects.push(tempString)
 
+              }
             }
           });
           //now loop through all subjects, removing duplicates
@@ -99,15 +101,10 @@ import {Link} from "react-router-dom";
               label: 'E-books',
             },
             {
-              name: 'fmtmap',
+              name: 'fmtarticle',
               key: 'format4',
-              label: 'Maps',
-            },
-            {
-              name: 'fmtaudio',
-              key: 'format5',
-              label: 'Audio Recording',
-            },
+              label: 'Articles',
+            },   
             {
               name: 'fmtvideo',
               key: 'format6',
@@ -163,14 +160,10 @@ import {Link} from "react-router-dom";
                         }
                     </React.Fragment>
 
-                    <label className="subjectLabel">Subjects:</label>
+                    </fieldset>
+                    <h3 className="subjectLabel">Search By Subject:</h3>
 
                     <ul className="subjectList">{subjectList}</ul>
-
-                    
-
-
-                    </fieldset>
                 </form>
 
             

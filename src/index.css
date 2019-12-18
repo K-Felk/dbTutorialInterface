@@ -100,7 +100,11 @@ body {
 
 .pt-ebook {
   height: 56px;
-  background-position: -350px -515px;
+  background-position: -150px -515px;
+}
+.pt-newsPaper {
+  background-position: -145px -31px;
+  height: 63px;
 }
 
 .pt-book {
@@ -118,6 +122,12 @@ body {
   height: 57px;
 }
 
+.pt-magazine {
+background-position: -247px -405px;
+  height: 57px;
+
+}
+
 .pt-map {
   background-position: -36px -121px;
   height: 45px;
@@ -133,6 +143,10 @@ body {
   margin-top: 6pt;
   
   margin-bottom: 10pt;
+}
+.subjectLabel {
+  font-size: 14pt;
+  font-weight: normal;
 }
 
 .subjects {

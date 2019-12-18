@@ -45,7 +45,8 @@ class Main extends React.Component{
         //user triggered a subject Search by clicking a subject link
         subjectSearch(event) {
                 
-                this.setState({start: 0});
+                this.clearState();
+                this.setState({query: "*"});
                 this.setState({subject: event.target.value}, this.push);
 
         }
@@ -332,20 +333,18 @@ class Main extends React.Component{
                                                 
                                                 switch (name) {
                                                         case "fmtbooks":
-                                                                solrQuery += "Format:book";
+                                                                solrQuery += "Format:Book";
                                                         break;
                                                         case "fmtebooks":
-                                                                solrQuery += "Format:ebook";
+                                                                solrQuery += "Format:eBook";
                                                         break;
-                                                        case "fmtmap":
-                                                                solrQuery += "Format:map";
-                                                        break;
-                                                        case "fmtaudio":
-                                                                solrQuery += "Format:audio music"; 
+                                                        case "fmtarticle":
+                                                                solrQuery += "Format:Article";
                                                         break;
                                                         case "fmtvideo":
-                                                                solrQuery += "Format:dvd/video"; 
+                                                                solrQuery += "Format:Streaming Video"; 
                                                         break;
+                                                        
                                                         default:
 
                                                         break;
@@ -365,19 +364,16 @@ class Main extends React.Component{
                                         }
                                         switch (name) {
                                                 case "fmtbooks":
-                                                        solrQuery += "Format:book";
+                                                        solrQuery += "Format:Book";
                                                 break;
                                                 case "fmtebooks":
-                                                        solrQuery += "Format:ebook";
+                                                        solrQuery += "Format:eBook";
                                                 break;
-                                                case "fmtmap":
-                                                         solrQuery += "Format:map";
-                                                break;
-                                                case "fmtaudio":
-                                                        solrQuery += "Format:audio music"; 
+                                                case "fmtarticle":
+                                                         solrQuery += "Format:Article";
                                                 break;
                                                 case "fmtvideo":
-                                                        solrQuery += "Format:dvd/video"; 
+                                                        solrQuery += "Format:Video"; 
                                                 break;
                                                 default:
 
@@ -405,7 +401,7 @@ class Main extends React.Component{
                                                 
                                                 switch (name) {
                                                         case "schbonline":
-                                                                solrQuery += " AND (Format:ebook OR Format:streaming)";
+                                                                solrQuery += " AND (Format:eBook OR Format:Streaming)";
                                                         break;
                                                         case "schbscholarly":
                                                                 solrQuery += " AND Scholarly:t";
@@ -424,7 +420,7 @@ class Main extends React.Component{
                                         this.setState(prevState => ({ scholarly: prevState.scholarly.set(name, true) }));
                                         switch (name) {
                                                 case "schbonline":
-                                                        solrQuery += " AND (Format:ebook OR Format:streaming)";
+                                                        solrQuery += " AND (Format:eBook OR Format:Streaming)";
                                                 break;
                                                 case "schbscholarly":
                                                         solrQuery += " AND Scholarly:t";
