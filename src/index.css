@@ -144,12 +144,12 @@ background-position: -247px -405px;
   
   margin-bottom: 10pt;
 }
-.subjectLabel {
+.subjectLabel, .disciplineLabel {
   font-size: 14pt;
   font-weight: normal;
 }
 
-.subjects {
+.subjects, .disciplines {
   border: none;
   color: blue;
   margin-top: 5pt;
@@ -157,7 +157,7 @@ background-position: -247px -405px;
 
 }
 
-.subjectList{
+.subjectList, .disciplineList{
   list-style-type:none;
   margin: 0;
   padding: 0;

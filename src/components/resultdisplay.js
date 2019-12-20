@@ -25,7 +25,7 @@ function Itemdisplay(props) {
             } else {
                 description = props.description;
             }
-
+            //if the description is more than 255 characters, truncate it so that the search results are uniform
             if (description.length > 255) {
                 description = description.substr(0, 255) + "...";
 

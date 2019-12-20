@@ -29,6 +29,7 @@ class Main extends React.Component{
                         alertmsg: "",
                         alertIsVisible: false,
                         subject: "",
+                        discipline: "",
                         
                 };
                 
@@ -39,6 +40,7 @@ class Main extends React.Component{
                 this.advance = this.advance.bind(this);
                 this.back = this.back.bind(this);
                 this.subjectSearch = this.subjectSearch.bind(this);
+                this.disciplineSearch = this.disciplineSearch.bind(this);
         }
 
 
@@ -48,6 +50,14 @@ class Main extends React.Component{
                 this.clearState();
                 this.setState({query: "*"});
                 this.setState({subject: event.target.value}, this.push);
+
+        }
+        //user triggered a discipline search
+        disciplineSearch(event) {
+                
+                this.clearState();
+                this.setState({query: "*"});
+                this.setState({discipline: event.target.value}, this.push);
 
         }
         //clear state-this is neccessary to sync when the URL indicates the search has been cleared, and 
@@ -66,6 +76,7 @@ class Main extends React.Component{
                 this.setState({start: 0});  
                 this.setState({query: ""});
                 this.setState({subject: ""});
+                this.setState({discipline: ""})
                 
         }
         //if we have more than ten results, page to the next ten
@@ -79,7 +90,7 @@ class Main extends React.Component{
                 
                       
         }
-
+        //go backwards to the previous ten results
         back(event) {
                 const adv = this.state.start - 10;
                 this.setState({start: adv}, this.handleSubmit);
@@ -122,10 +133,15 @@ class Main extends React.Component{
                         queryString += "enddate=" + this.state.endDate + "&";
                 }
                 
-                console.log(this.state.subject);
+                
                 
                 if (this.state.subject !== "") {
                         queryString += "subject=" + this.state.subject + "&";
+
+                }
+
+                if (this.state.discipline !== "") {
+                        queryString += "discipline=" + this.state.discipline + "&";
 
                 }
 
@@ -276,7 +292,6 @@ class Main extends React.Component{
 
                         solrQuery = solrQuery + parsed.query;
 
-
                         this.setState({field: parsed.field});
                         this.setState({query: parsed.query});
 
@@ -284,6 +299,12 @@ class Main extends React.Component{
                         if (parsed.subject !== undefined) {
                                 this.setState({subject: parsed.subject});
                                 solrQuery += " AND Subject:\"" + parsed.subject + "\"";
+
+                        }
+
+                        if (parsed.discipline !== undefined) {
+                                this.setState({discipline: parsed.discipline});
+                                solrQuery += " AND Discipline:\"" + parsed.discipline + "\"";
 
                         }
 
@@ -473,6 +494,9 @@ class Main extends React.Component{
                         if (this.state.subject !== "") {
                                 searchStatement += " and " + this.state.subject + " in subject";
                         }
+                        if (this.state.discipline !== "") {
+                                searchStatement += " and " + this.state.discipline + " in discipline";
+                        }
                 }
                 return(
                         <div className="container">
@@ -497,6 +521,7 @@ class Main extends React.Component{
                                                 endDate={this.state.endDate}
                                                 onChange={this.handleChange}
                                                 subjectSearch={this.subjectSearch}
+                                                disciplineSearch={this.disciplineSearch} 
                                         />
                                 <Searchresults 
                                                 start={this.state.start}

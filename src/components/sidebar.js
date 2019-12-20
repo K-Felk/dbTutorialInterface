@@ -12,53 +12,74 @@ import {Link} from "react-router-dom";
 
         //set up for subject search 
         var subjectList = "";
+        var disciplineList = "";
         
         //first loop through and extract all subject headings
         if (this.props.results.length > 0) { 
           var results = this.props.results
           var subjects = [];
+          var disciplines = [];
 
           //cycle through results, extract all subject headings, put them all in an array
           results.forEach(function (result, index) {
+
+            //cycle throguh results looking for disciplines, add them to the list
+            if (result.Discipline !== undefined) {
+              if (result.Discipline.includes(";")) {
+                var tempString = result.Discipline.split(";");
+                disciplines = disciplines.concat(tempString);
+              } else {
+                disciplines.push(result.Discipline);
+              }
+
+            }
+
             if (result.Subject !== undefined) {
-              var tempString = result.Subject.replace(/"/g,"");
+              tempString = result.Subject.replace(/"/g,"");
                     
               //we can have one subject or many, determine which and proceed accordingly
               if (tempString.includes(";")) {
                         
                 var temp = tempString.split(";");
-                subjects = subjects.concat(temp)
-            }  else {
+                subjects = subjects.concat(temp);
+              }  else {
                         
-                subjects.push(tempString)
+                subjects.push(tempString);
 
               }
             }
           });
+        
           //now loop through all subjects, removing duplicates
           var uniqueSubjects = [];
           subjects.forEach(function(subject, index) {
             if (uniqueSubjects.includes(subject) === false) {
               uniqueSubjects.push(subject);
-
             }
-
-
           })
+
+          var uniqueDisciplines = [];
+          disciplines.forEach(function(discipline, index) {
+            if (uniqueDisciplines.includes(discipline) === false) {
+              uniqueDisciplines.push(discipline);
+            }
+          })
+
 
           
           if (uniqueSubjects.length > 0) {
             subjectList = uniqueSubjects.map((subject, index) => 
             <li key={index}><button className="subjects" onClick={this.props.subjectSearch} type="button" value={subject}>{subject}</button></li>
-        
-            
-            
+            );
+          } 
+          if (uniqueDisciplines.length > 0) {
+            disciplineList = uniqueDisciplines.map((discipline, index) => 
+            <li key={index}><button className="disciplines" onClick={this.props.disciplineSearch} type="button" value={discipline}>{discipline}</button></li>
           );
-            
-        }
-
+          }
 
         }
+      
 
         
 
@@ -164,6 +185,10 @@ import {Link} from "react-router-dom";
                     <h3 className="subjectLabel">Search By Subject:</h3>
 
                     <ul className="subjectList">{subjectList}</ul>
+
+                    <h3 className="disciplineLabel">Search By Discipline:</h3>
+
+                    <ul className="disciplineList">{disciplineList}</ul>
                 </form>
 
             
