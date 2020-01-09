@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from "react-router-dom";
+
 
 
   class SideBar extends React.Component {
@@ -10,17 +10,17 @@ import {Link} from "react-router-dom";
     render(props) {
 
 
-        //set up for subject search 
+        //set up for subject/discipline search 
         var subjectList = "";
         var disciplineList = "";
         
-        //first loop through and extract all subject headings
+        //first loop through and extract all disciplines
         if (this.props.results.length > 0) { 
           var results = this.props.results
           var subjects = [];
           var disciplines = [];
 
-          //cycle through results, extract all subject headings, put them all in an array
+          //cycle through results, extract all disciplines, put them all in an array
           results.forEach(function (result, index) {
 
             //cycle throguh results looking for disciplines, add them to the list
@@ -33,6 +33,16 @@ import {Link} from "react-router-dom";
               }
 
             }
+
+            //clean up the list by cutting off trailing and leading whitespace, norm capitalization
+
+            disciplines.forEach(function (discipline, index) {
+
+              
+              disciplines[index] = discipline.trim().toLowerCase();
+              
+            })
+            
 
             if (result.Subject !== undefined) {
               tempString = result.Subject.replace(/"/g,"");
@@ -49,6 +59,17 @@ import {Link} from "react-router-dom";
               }
             }
           });
+
+          subjects.forEach(function (subject, index) {
+            
+            if (subject.trim().toLowerCase() === "") {
+              delete subjects[index];
+
+            } else {
+              subjects[index] = subject.trim().toLowerCase();
+            }
+
+          })
         
           //now loop through all subjects, removing duplicates
           var uniqueSubjects = [];
@@ -64,8 +85,6 @@ import {Link} from "react-router-dom";
               uniqueDisciplines.push(discipline);
             }
           })
-
-
           
           if (uniqueSubjects.length > 0) {
             subjectList = uniqueSubjects.map((subject, index) => 
@@ -145,7 +164,7 @@ import {Link} from "react-router-dom";
           }
             
         return(
-            <div className="col sidebar">
+            <div className="col sidebar" role="search" aria-label="Limiting">
                 <h2>Refine Results</h2>
                 
                 <form>
@@ -163,7 +182,7 @@ import {Link} from "react-router-dom";
                         }
                     </React.Fragment>
                     
-                    <label>Publication Date</label>
+                    <label>Publication Year</label>
                     <input type="number" minLength="4" maxLength="4" name="startDate" value={this.props.startDate} onChange={this.props.onChange}></input>
                     
                     <label>to:</label>
@@ -182,11 +201,11 @@ import {Link} from "react-router-dom";
                     </React.Fragment>
 
                     </fieldset>
-                    <h3 className="subjectLabel">Search By Subject:</h3>
+                    <h2 className="subjectLabel">Search By Subject:</h2>
 
                     <ul className="subjectList">{subjectList}</ul>
 
-                    <h3 className="disciplineLabel">Search By Discipline:</h3>
+                    <h2 className="disciplineLabel">Search By Discipline:</h2>
 
                     <ul className="disciplineList">{disciplineList}</ul>
                 </form>

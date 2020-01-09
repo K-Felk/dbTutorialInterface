@@ -35,7 +35,7 @@ class Searchresults extends React.Component {
 
       render() {
         var numStatement;
-        var searchStatement;
+       
         const results = this.props.results;
         
         const bound = this.props.start + results.length;
@@ -54,17 +54,25 @@ class Searchresults extends React.Component {
           total = parseInt(this.props.numfound, 10);
         }
 
+        var alert = "";
+
+        if (this.props.alertMsg !== "") {
+          alert = <Alert role="alert" alertMsg={this.props.alertMsg}/>
+        } 
+
         
 
         
 
           return(
             
-              <div className="col-sm-9">
-                <Alert isVisible={this.props.isVisible} alertMsg={this.props.alertMsg}/>
+              <div className="col-sm-9" role="main" aria-label="Search Results" aria-live="polite">
+                <a name="results"></a>
+                {alert}
+                <div role="status" aria-live="polite">
                 <p>{this.props.searchStatement}</p>
                 <p>{numStatement}</p>
-                
+                </div>
 
                 
                 {results.length > 0 ? results.map(result => this.renderItem(result)) : ""}

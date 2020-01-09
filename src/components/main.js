@@ -8,6 +8,7 @@ import qs from 'query-string';
 import Footer from "./footer.js"
 
 
+
 class Main extends React.Component{
 
         constructor(props) {
@@ -184,7 +185,7 @@ class Main extends React.Component{
                                 this.setState({alertmsg: "End date cannot be before start date"});
                                 this.setState({alertIsVisible: true});
 
-                                console.log("alert" + this.state.alertmsg);
+                                
                                 return;
                         }
                 }
@@ -194,6 +195,7 @@ class Main extends React.Component{
                 //we also need to reset the position marker, so we start the result display at item one.
                 if (event !== undefined) { 
                         this.setState({subject: ""});
+                        this.setState({discipline: ""});
                         this.setState({start: 0}, this.push);
                 }   else {
                         this.push();
@@ -273,6 +275,7 @@ class Main extends React.Component{
         
         //we have to access url params when the component mounts.  Tried this elsewhere in the class and it fails.  God knows why.
         componentDidMount() {
+                document.title = "Grand Valley State University Libraries: Tutorial Search";
                 
                 //if the query is non-empty, get search paramaters, use them to set current state
                 //and build the query string for solr
@@ -502,7 +505,7 @@ class Main extends React.Component{
                         <div className="container">
                                <div className="row">
                                         <div className="col">
-                                                <NavBar handleClick={this.clearState}/>
+                                                <NavBar clear={this.clearState} />
                                         </div>
                                         
                                 </div>

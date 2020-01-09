@@ -15,7 +15,7 @@ class SearchForm extends React.Component{
 
         return(
             
-                <div className="col searchform">
+                <div className="col searchform" role="search" aria-label="Primary">
                     <form onSubmit={this.props.onSubmit}>
                         <div className="formContainer">
                         <img className="searchImg" src={logo} alt="GVSU Logo" />
@@ -26,7 +26,7 @@ class SearchForm extends React.Component{
                             <option value="Creator">Author</option>
                             <option value="Title">Title</option>
                         </select>
-                                <input className="searchInput" type="text" value={this.props.query} onChange={this.props.onChange} name="query"/>
+                                <input className="searchInput" type="text" role="searchbox" value={this.props.query} onChange={this.props.onChange} name="query"/>
                         
                     <input name="submitSearch" className="btn btn-primary btn-sm" type="submit" value="Search" />
 

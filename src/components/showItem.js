@@ -5,6 +5,10 @@ import { Link } from "react-router-dom";
 
 class ShowItem extends React.Component{
 
+    componentDidMount() {
+        document.title = "Grand Valley State University Libraries: Tutorial Search";
+    }
+
     
 
     render() {
