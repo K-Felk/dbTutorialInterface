@@ -48,7 +48,7 @@ class ItemDisplay extends React.Component{
 
     submit(event) {
 
-        var queryString = "/search/?";
+        var queryString = "/search?";
         queryString += "field=" + this.state.field + "&";
         queryString += "query=" + this.state.query;
         this.props.history.push(queryString); 

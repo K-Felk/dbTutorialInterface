@@ -12,9 +12,12 @@ import ItemDisplay from "./components/itemDisplay";
 
 
 
+
+
 ReactDOM.render(
+    
     //wrap components in router so we can access the URL query string, so that we can save state there rather than in component state
-    <Router>
+    <Router basename="/tutorial">
     <Route path="/search" component={Main} />
     <Route path="/item/:id" component={ItemDisplay}/>
     <Route path="/placeholder" component={PlaceHolder}/>

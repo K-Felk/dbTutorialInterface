@@ -99,7 +99,7 @@ class Main extends React.Component{
         }
 
         constructURL() {
-                var queryString = "/?";
+                var queryString = "/search?";
                 queryString += "field=" + this.state.field + "&";
                 queryString += "query=" + this.state.query + "&";
                 
@@ -152,7 +152,7 @@ class Main extends React.Component{
                 return queryString;
 
         }
-        //construct a URL form current state, push to history, then
+        //construct a URL from current state, push to history, then
         //force a page reload so that the app will read the new URL,
         //update state, and execute the back-end solr query
         //see componentdidmount.
@@ -160,7 +160,7 @@ class Main extends React.Component{
         //so I can sequence page reloads after 
         //certain setState statements as a callback function.
         push() {
-                var query = "/search" + this.constructURL();
+                var query = this.constructURL();
                         
                      
                 this.props.history.push(query); 
@@ -259,7 +259,7 @@ class Main extends React.Component{
                 
                 
 
-                const searchString = "http://54.201.145.110:8983/solr/tutorial/select?q=" + query;
+                const searchString = "http://dev.library.gvsu.edu/tutorialReq/getSolr.php?solrSearch=" + query;
                 
                 axios.get(searchString)
                   .then(res => {

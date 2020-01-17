@@ -13,7 +13,7 @@ import { HashLink } from 'react-router-hash-link';
             <div className="navBar" role="navigation">
             <Router>
                 <Link to="/search" onClick={this.props.clear}>Start Over</Link>
-                <HashLink className="skipLink" to="#results">Skip to results</HashLink>
+                
             </Router>
             </div>
 

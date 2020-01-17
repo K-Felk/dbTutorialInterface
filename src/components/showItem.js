@@ -32,7 +32,7 @@ class ShowItem extends React.Component{
         
         return(
             <div className="col-sm-9" role="main" aria-label="Detailed Record">
-                <Alert isVisible={this.props.isVisible} alertMsg={this.props.alertMsg}/>
+                
                 <Link to="" className="backLink" onClick={this.props.back} > back to Result List</Link>
                 
                 <h1 className="itemTitle">{this.props.title}</h1>

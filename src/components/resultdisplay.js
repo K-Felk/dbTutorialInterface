@@ -6,7 +6,7 @@ function Itemdisplay(props) {
         //console.log(props)
 
         var description = "";
-        const link = "/item/" + props.id;
+        const link = "/tutorial/item/" + props.id;
 
         var details = "";
 
@@ -65,7 +65,7 @@ function Itemdisplay(props) {
 
         if (props.format === "eBook"|| props.format === "Streaming Video") {
             resourceLink = <p><Link className="onlineLink" to="/placeholder">Online Access</Link></p>
-        }  else if (props.format === "book") {
+        }  else if (props.format === "Book") {
         resourceLink = <Link className="available" to="/available">Available {props.callnumber} {props.location}</Link>
         }
 
