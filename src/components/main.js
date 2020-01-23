@@ -269,7 +269,7 @@ class Main extends React.Component{
                 
                 
 
-                const searchString = "http://54.201.145.110:8983/solr/tutorial/select?q=" + query;
+                const searchString = "http://18.236.108.24:8983/solr/tutorial/select?q=" + query;
                 console.log(searchString);
                 axios.get(searchString)
                   .then(res => {
