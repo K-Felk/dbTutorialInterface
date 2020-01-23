@@ -205,7 +205,7 @@ dt {
 }
 dd{
     display: block;
-    margin: 0 0 0 160px;
+    margin-left: 160px;
     padding: 5px 0 5px 10px
 }
 

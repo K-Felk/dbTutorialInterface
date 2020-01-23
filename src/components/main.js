@@ -189,6 +189,16 @@ class Main extends React.Component{
                                 return;
                         }
                 }
+                //query cannot be blank
+                if (this.state.query === "") {
+                        this.setState({alertmsg: "Search string cannot be blank."});
+                        this.setState({alertIsVisible: true});
+
+                                
+                        return;
+
+
+                }
                 
 
                 // If the submit button is triggering this 
@@ -259,11 +269,11 @@ class Main extends React.Component{
                 
                 
 
-                const searchString = "http://dev.library.gvsu.edu/tutorialReq/getSolr.php?solrSearch=" + query;
-                
+                const searchString = "http://54.201.145.110:8983/solr/tutorial/select?q=" + query;
+                console.log(searchString);
                 axios.get(searchString)
                   .then(res => {
-                    
+                    console.log(res);
                     this.setState({ numfound: String(res.data.response.numFound) });
                     this.setState({ results: res.data.response.docs });
                     

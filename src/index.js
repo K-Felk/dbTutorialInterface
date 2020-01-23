@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter as Router,
     Route
   } from "react-router-dom";
-import './index.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 import Main from "./components/main.js"
 import PlaceHolder from "./components/placeholder";
 import Available from "./components/available";
