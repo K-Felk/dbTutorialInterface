@@ -266,18 +266,26 @@ class Main extends React.Component{
         }
         //get search results from the solr backend, set state variables for results to force a re-render and show results
         getResults (query) {
+                this.setState({alertmsg: ""});
+                this.setState({alertIsVisible: false});
                 
-                
-
-                const searchString = "http://18.236.108.24:8983/solr/tutorial/select?q=" + query;
-                console.log(searchString);
-                axios.get(searchString)
+                axios({method: 'post',
+                url: 'https://prod.library.gvsu.edu/tutreq/request.php',
+                data: {
+                  search: query
+                }
+                })
                   .then(res => {
-                    console.log(res);
+                          
+                    
                     this.setState({ numfound: String(res.data.response.numFound) });
                     this.setState({ results: res.data.response.docs });
                     
-                  })
+                }).catch(error => {
+                        this.setState({alertmsg: "Unable to get data from search:" + error});
+                        this.setState({alertIsVisible: true});
+
+                });
                 
                 
 
