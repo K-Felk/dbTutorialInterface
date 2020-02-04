@@ -69,7 +69,7 @@ class ItemDisplay extends React.Component{
     componentDidMount () {
         const id  = this.props.match.params.id
 
-        const URL = "http://54.201.145.110:8983/solr/tutorial/select?q=ID:" + id;
+        const URL = "https://prod.library.gvsu.edu/tutreq/getitem.php?ID=" + id;
 
         axios.get(URL)
                   .then(res => {

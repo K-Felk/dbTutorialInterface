@@ -33,6 +33,12 @@ class Main extends React.Component{
                         discipline: "",
                         
                 };
+
+                // Hey, a popstate event happened!
+                window.addEventListener("popstate", e => {
+                        // Nope, go back to your page
+                        window.location.reload(false);
+                 });
                 
         
                 this.clearState = this.clearState.bind(this);
@@ -148,7 +154,7 @@ class Main extends React.Component{
 
                 
                 queryString += "start=" + this.state.start;
-                console.log(queryString);
+                //console.log(queryString);
                 return queryString;
 
         }

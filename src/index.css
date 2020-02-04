@@ -62,7 +62,24 @@ body {
 
 }
 
+legend {
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.searchStatement {
+  font-weight: bold;
+  background-color: lightcyan;
+}
+
+.numResults {
+  color: #575757;
+  font-size: small;
+}
+
+
 .searchLegend {
+  font-weight: normal;
   display: inline;
   font-size: small;
 }
@@ -72,10 +89,16 @@ body {
 .limiter {
   margin-right: 5pt;
 }
-
+.card {
+  border: 0px;
+}
 .card-title{
   font-size: 14pt;
   font-weight: bold;
+}
+
+.card-text {
+  margin: 5px;
 }
 .details {
   color: grey;
@@ -96,6 +119,10 @@ body {
   width: 80px;
   margin-left: 0px;
   text-align: center;
+}
+
+.caption {
+  font-size: small;
 }
 
 .pt-ebook {
@@ -137,9 +164,9 @@ background-position: -247px -405px;
   height: 49px;
 }
 .prev {
-  border: none;
-  color: blue;
-  text-decoration: underline;
+  color: white;
+  background-color:#0065a4;
+  
   margin-top: 6pt;
   
   margin-bottom: 10pt;
@@ -150,6 +177,9 @@ background-position: -247px -405px;
 }
 
 .subjects, .disciplines {
+  margin-left: 0px;
+  padding-left: 0px;
+  text-align: left; 
   border: none;
   color: blue;
   margin-top: 5pt;
@@ -158,18 +188,20 @@ background-position: -247px -405px;
 }
 
 .subjectList, .disciplineList{
+  
   list-style-type:none;
   margin: 0;
   padding: 0;
 
 }
+.searchButton {
+  background-color: #0065a4;
+}
 
 .next {
-  border: none;
-  color: blue;
+  color: white;
+  background-color:#0065a4;
   margin-top: 6pt;
-  text-decoration: underline;
-  
   margin-bottom: 10pt;
 }
 

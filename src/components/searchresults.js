@@ -63,10 +63,10 @@ class Searchresults extends React.Component {
           alert = <Alert role="alert" alertMsg={this.props.alertMsg}/>
         } 
 
-        if (bound === 0) {
+        if (this.props.numfound === "0") {
           noresults = <NotFound role="alert"/>
 
-        }
+        } 
 
         
 
@@ -79,8 +79,8 @@ class Searchresults extends React.Component {
                 {alert}
                 {noresults}
                 <div role="status" aria-live="polite">
-                <p>{this.props.searchStatement}</p>
-                <p>{numStatement}</p>
+                <p className="searchStatement">{this.props.searchStatement}</p>
+                <p className="numResults">{numStatement}</p>
                 </div>
 
                 
@@ -88,8 +88,9 @@ class Searchresults extends React.Component {
 
                 <div className="nextprev">
 
-                {this.props.start > 0? <button className="prev" type="button" onClick={this.props.back} >Previous</button> : ""}
+                
                 {total > 10 && this.props.start +10 < total? <button type="button" className="next" onClick={this.props.advance} >Next</button> : ""}
+                {this.props.start > 0? <button className="prev" type="button" onClick={this.props.back} >Previous</button> : ""}
                 </div> 
              </div>
             
