@@ -1,6 +1,7 @@
 import React from 'react';
 import Itemdisplay from './resultdisplay';
 import Alert from './alert'
+import NotFound from './noneFound'
 
 class Searchresults extends React.Component {
     
@@ -44,7 +45,7 @@ class Searchresults extends React.Component {
 
         var total = 0; 
 
-        if (this.props.numfound === "") {
+        if (this.props.numfound === "" || bound === 0) {
           
           numStatement = "";
 
@@ -56,9 +57,16 @@ class Searchresults extends React.Component {
 
         var alert = "";
 
+        var noresults = "";
+
         if (this.props.alertMsg !== "") {
           alert = <Alert role="alert" alertMsg={this.props.alertMsg}/>
         } 
+
+        if (bound === 0) {
+          noresults = <NotFound role="alert"/>
+
+        }
 
         
 
@@ -67,8 +75,9 @@ class Searchresults extends React.Component {
           return(
             
               <div className="col-sm-9" role="main" aria-label="Search Results" aria-live="polite">
-                <a name="results"></a>
+                
                 {alert}
+                {noresults}
                 <div role="status" aria-live="polite">
                 <p>{this.props.searchStatement}</p>
                 <p>{numStatement}</p>

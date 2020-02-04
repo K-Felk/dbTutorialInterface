@@ -174,40 +174,48 @@ import PropTypes from 'prop-types';
                         {
                         scholarly.map(item => (
                             
-                             <label key={item.key}>
+                             <div key={item.key}>
                                 
-                                <Checkbox name={item.name} checked={this.props.scholarly.get(item.name)} onChange={this.props.onChange} />{item.label}
-                            </label>
+                                <Checkbox name={item.name} checked={this.props.scholarly.get(item.name)} onChange={this.props.onChange} /><label htmlFor={item.name}>{item.label}</label>
+                            </div>
                         ))
                         }
                     </React.Fragment>
-                    
-                    <label>Publication Year</label>
+                    </fieldset>
+                    <fieldset>
+                    <legend>Publication Year</legend>
+                    <label htmlFor="startDate">Start Year:</label>
                     <input type="number" minLength="4" maxLength="4" name="startDate" value={this.props.startDate} onChange={this.props.onChange}></input>
                     
-                    <label>to:</label>
+                    <label htmlFor="endDate">End Year:</label>
                         <input type="number" minLength="4" maxLength="4" name="endDate" value={this.props.endDate} onChange={this.props.onChange}></input>
+                      </fieldset>
+                    <fieldset className="input-group">
+                      <legend>Format:</legend>
                     
-                    <span>Format</span>
                     <React.Fragment>
                         {
                         format.map(item => (
-                             <label key={item.key}>
+                             <div key={item.key}>
                                 
-                                <Checkbox name={item.name} checked={this.props.format.get(item.name)} onChange={this.props.onChange} />{item.label}
-                            </label>
+                                <Checkbox name={item.name} checked={this.props.format.get(item.name)} onChange={this.props.onChange} /><label htmlFor={item.name}>{item.label}</label>
+                            </div>
                         ))
                         }
                     </React.Fragment>
 
                     </fieldset>
-                    <h2 className="subjectLabel">Search By Subject:</h2>
 
+                    <fieldset>
+                      <legend>Search By Subject:</legend>
+                    
                     <ul className="subjectList">{subjectList}</ul>
-
-                    <h2 className="disciplineLabel">Search By Discipline:</h2>
+                    </fieldset>
+                    <fieldset>
+                    <legend>Search By Discipline:</legend>
 
                     <ul className="disciplineList">{disciplineList}</ul>
+                    </fieldset>
                 </form>
 
             
