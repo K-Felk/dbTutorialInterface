@@ -74,7 +74,7 @@ class Searchresults extends React.Component {
 
           return(
             
-              <div className="col-sm-9" role="main" aria-label="Search Results" aria-live="polite">
+              <div className="col-sm-9" role="main" ID="results" aria-label="Search Results" aria-live="polite">
                 
                 {alert}
                 {noresults}

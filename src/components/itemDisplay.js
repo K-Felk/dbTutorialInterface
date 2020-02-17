@@ -113,7 +113,7 @@ class ItemDisplay extends React.Component{
         return(
             <div className="container">
                 <div className="row">
-                    <div className="col">
+                    <div className="col navBar" role="navigation">
 
                         <NavBar handleClick={this.startOver}/>
 

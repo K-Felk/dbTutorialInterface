@@ -153,7 +153,7 @@ import PropTypes from 'prop-types';
           ];
 
         const Checkbox = ({ type = 'checkbox', name, checked = false, onChange }) => (
-            <input type={type} name={name} className="limiter" checked={checked} onChange={this.props.onChange} />
+            <input type={type} name={name} ID={name} className="limiter" checked={checked} onChange={this.props.onChange} />
           );
 
         Checkbox.propTypes = {
@@ -164,11 +164,11 @@ import PropTypes from 'prop-types';
           }
             
         return(
-            <div className="col sidebar" role="search" aria-label="Limiting">
+            <div className="col sidebar"  ID="facets" role="search" aria-label="Limiting">
                 <h2>Refine Results</h2>
                 
                 <form>
-                    <fieldset className="input-group">
+                    <fieldset className="inputSidebar">
                     <legend>Limit to:</legend>
                     <React.Fragment>
                         {
@@ -182,7 +182,7 @@ import PropTypes from 'prop-types';
                         }
                     </React.Fragment>
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="inputSidebar">
                     <legend>Publication Year</legend>
                     <label htmlFor="startDate">Start Year:</label>
                     <input type="number" minLength="4" maxLength="4" name="startDate" value={this.props.startDate} onChange={this.props.onChange}></input>
@@ -190,7 +190,7 @@ import PropTypes from 'prop-types';
                     <label htmlFor="endDate">End Year:</label>
                         <input type="number" minLength="4" maxLength="4" name="endDate" value={this.props.endDate} onChange={this.props.onChange}></input>
                       </fieldset>
-                    <fieldset className="input-group">
+                    <fieldset className="inputSidebar">
                       <legend>Format:</legend>
                     
                     <React.Fragment>

@@ -66,7 +66,7 @@ function Itemdisplay(props) {
         if (props.format === "eBook"|| props.format === "Streaming Video") {
             resourceLink = <p><Link className="onlineLink" to="/placeholder">Online Access</Link></p>
         }  else if (props.format === "Book") {
-        resourceLink = <Link className="available" to="/available">Available {props.callnumber} {props.location}</Link>
+        resourceLink = <Link aria-label={props.title} className="available" to="/available">Available {props.callnumber} {props.location}</Link>
         }
 
 
